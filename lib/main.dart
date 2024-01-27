@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-import 'screens/login.dart';
+//import 'screens/login.dart';
+import 'screens/Registration.dart';
 
 void main() {
   runApp(
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Emo Rhythm',
       debugShowCheckedModeBanner: false,
       //useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color.fromRGBO(10, 39, 66, 1),
       ),
-      home: LoginPage(),
+      home: RegistrationPage(),
     );
   }
 }
