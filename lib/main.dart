@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter_application_2/screens/landing.dart';
 import 'screens/login.dart';
 
 void main() {
   runApp(
     DevicePreview(
       //enabled: !kReleaseMode,
-      builder: (context) => MyApp(), // Wrap your app
+      builder: (context) => const MyApp(), // Wrap your app
     ),
   );
 }
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color.fromRGBO(10, 39, 66, 1),
       ),
-      home: LoginPage(),
+      home: const Splash(),
     );
   }
 }
