@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter_application_2/screens/landing.dart';
-import 'screens/login.dart';
+import 'screens/landing.dart';
 
 void main() {
   runApp(
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Emo Rhythm',
       debugShowCheckedModeBanner: false,
       //useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),

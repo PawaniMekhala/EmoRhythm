@@ -20,11 +20,10 @@ class _SplashState extends State<Splash> {
     await Future.delayed(const Duration(milliseconds: 2500), () {});
     // ignore: use_build_context_synchronously
     Navigator.pushReplacement(
-        context, 
-        MaterialPageRoute(
-          builder: (context) => const LoginPage(
-          ),
-        ),
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginPage(),
+      ),
     );
   }
 
@@ -39,13 +38,12 @@ class _SplashState extends State<Splash> {
               SizedBox(
                 width: 300,
                 height: 300,
-                child: Image.asset('assests/logo/Emo Rhythm.png'),
+                child: Image.asset('assets/logo/Emo Rhythm.png'),
               ),
               const SpinKitThreeBounce(
                 color: Colors.white,
                 size: 40.0,
               ),
-        
             ],
           ),
         ),
