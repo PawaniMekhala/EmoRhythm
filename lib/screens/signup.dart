@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'login.dart';
 import 'home.dart';
-//import 'Registration.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key, Key});
@@ -39,7 +38,6 @@ class SignupPage extends StatelessWidget {
                   children: <Widget>[
                     Column(
                       children: <Widget>[
-                        //const SizedBox(height: 20.0),
                         Image.asset(
                           'assets/logo/Emo Rhythm.png',
                           fit: BoxFit.contain,
@@ -57,7 +55,6 @@ class SignupPage extends StatelessWidget {
                           "Create your account",
                           style: TextStyle(
                             color: Colors.white,
-                            //fontFamily: 'Port Lligat Slab',
                           ),
                         )
                       ],
@@ -87,7 +84,6 @@ class SignupPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      //width: 200,
                       padding: const EdgeInsets.only(top: 3, left: 3),
                       child: ElevatedButton(
                         onPressed: () {
@@ -127,7 +123,6 @@ class SignupPage extends StatelessWidget {
                         const Text(
                           "Already have an account?",
                           style: TextStyle(
-                            //fontFamily: 'Port Lligat Slab',
                             color: Colors.white,
                           ),
                         ),
