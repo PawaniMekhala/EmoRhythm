@@ -1,4 +1,6 @@
+import 'package:EmoRythm/screens/emotion_result.dart';
 import 'package:flutter/material.dart';
+import 'about_us.dart';
 import 'activity_log.dart';
 import 'help_and_support.dart';
 import 'navbar.dart';
@@ -108,13 +110,34 @@ class _HomePageState extends State<HomePage> {
                   ItemHome(
                     title: 'About Us',
                     icon: Icons.info,
-                    onTap: () {
+                    onTap: () {                   
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HelpAndSupportPage()),
+                          builder: (context) => const AboutUsPage(),
+                        ),
                       );
                     },
+                  
+                  ),
+                  ItemHome(
+                    title: 'Emotion',
+                    icon: Icons.face,
+                    onTap: () {
+                      // Replace with your actual mood and playlist data
+                      String mood = "happy";
+                      List<String> playlist = ["Song 1", "Song 2", "Song 3"];
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EmotionResultsPage(
+                            mood: mood,
+                            playlist: playlist,),
+                        ),
+                      );
+                    },
+                  
                   ),
                 ],
               ),

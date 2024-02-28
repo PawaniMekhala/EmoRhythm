@@ -12,7 +12,7 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
+        title: const Text("Activity log"),
       ),
     );
   }
