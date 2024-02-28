@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'navbar.dart';
+//import 'dart:io';
+import 'package:google_fonts/google_fonts.dart';
 
 class CapturePage extends StatelessWidget {
   const CapturePage({Key? key});
@@ -36,10 +38,10 @@ class CapturePage extends StatelessWidget {
                     height: 350,
                   ),
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     'Capture the Emotion',
-                    style: TextStyle(
-                      fontSize: 22,
+                    style: GoogleFonts.portLligatSlab(
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),

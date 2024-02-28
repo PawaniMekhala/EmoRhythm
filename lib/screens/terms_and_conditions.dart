@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'navbar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TermsAndConditionsPage extends StatefulWidget {
   const TermsAndConditionsPage({Key? key}) : super(key: key);
@@ -14,49 +15,34 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Terms & Conditions'),
-      // ),
       body: Center(
         child: Container(
-          width: 350,
-          height: 650,
           margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: const Color(0xFF0299D8),
-            borderRadius: BorderRadius.circular(35),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.6),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.fromLTRB(15.0, 50, 15.0, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back),
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                      ),
                       onPressed: () {
                         Navigator.pop(context);
                       },
                     ),
-                    const Row(
+                    Row(
                       children: [
-                        //Icon(Icons.question_answer),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Text(
                           'Terms & Conditions',
-                          style: TextStyle(
-                            fontSize: 24,
+                          style: GoogleFonts.portLligatSlab(
+                            fontSize: 28,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
                       ],
@@ -66,74 +52,70 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                 ),
               ),
               Container(
-                width: 300,
-                height: 400,
+                width: 320,
+                height: 520,
                 margin: const EdgeInsets.symmetric(vertical: 20),
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: const Color(0xFF1B5699),
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: const SingleChildScrollView(
-                  child: Text(
-                    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const Text(
+                        "yrrrddLorem ipsum, or lipsum as graphic or web designs. The passage is attributed to an unknown type setter in the 15th century who is thought to have scrambled parts Malorum for use in a type specimen ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ggfhffggLorem ipsum, or lipsum as it is sometimes known, is dummy ssdfjkjtext used in laying out print, graphic or web designs. The passage is attributed to an unknown types jgkfetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with: Lorem ipsum dolor sit amet, consectetur gshgadipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Checkbox(
+                            value: isChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                isChecked = value ?? false;
+                              });
+                            },
+                            // Change the checkbox color
+                            activeColor: Colors.grey,
+                          ),
+                          const SizedBox(width: 10),
+                          const Text(
+                            'I agree with the Privacy Policy',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Checkbox(
-                          value: isChecked, // Change this to the actual value
-                          onChanged: (value) {
-                            setState(() {
-                              isChecked = value ?? false;
-                            });
-                            // Handle checkbox state change
-                          },
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'I agree with the Privacy Policy',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+              SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    backgroundColor: const Color(0xFF1B5699),
+                  ),
+                  onPressed: () {
+                    // Handle sending the email
+                  },
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
                     ),
-                    const SizedBox(height: 4),
-                    Container(
-                      width: 250,
-                      padding: const EdgeInsets.only(top: 3, left: 3),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          backgroundColor: const Color(0xFF1B5699),
-                        ),
-                        onPressed: () {
-                          // Handle sending the email
-                        },
-                        child: const Text(
-                          'Submit',
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ],

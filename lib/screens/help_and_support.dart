@@ -13,18 +13,6 @@ class HelpAndSupportPage extends StatelessWidget {
           width: 350,
           height: 650,
           margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.lightBlue[200],
-            borderRadius: BorderRadius.circular(35),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.6),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -34,19 +22,25 @@ class HelpAndSupportPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back),
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                      ),
                       onPressed: () {
                         Navigator.pop(context);
                       },
                     ),
                     Row(
                       children: [
-                        Icon(Icons.question_answer),
-                        SizedBox(width: 8),
+                        Icon(
+                          Icons.question_answer_rounded,
+                          color: Colors.white,
+                        ),
+                        SizedBox(width: 15),
                         Text(
                           'FAQs',
                           style: GoogleFonts.portLligatSlab(
-                            fontSize: 26,
+                            fontSize: 40,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -59,7 +53,7 @@ class HelpAndSupportPage extends StatelessWidget {
               ),
               Container(
                 width: 300,
-                height: 450,
+                height: 460,
                 margin: const EdgeInsets.symmetric(vertical: 20),
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -68,13 +62,14 @@ class HelpAndSupportPage extends StatelessWidget {
                 ),
                 child: const SingleChildScrollView(
                   child: Text(
-                    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                    "yrrrddLorem ipsum, or lipsum as graphic or web designs. The passage is attributed to an unknown type setter in the 15th century who is thought to have scrambled parts Malorum for use in a type specimen ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ggfhffggLorem ipsum, or lipsum as it is sometimes known, is dummy ssdfjkjtext used in laying out print, graphic or web designs. The passage is attributed to an unknown types jgkfetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with: Lorem ipsum dolor sit amet, consectetur gshgadipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
               ),
+              const SizedBox(width: 40),
               const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -82,12 +77,12 @@ class HelpAndSupportPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.support_agent, color: Colors.black),
+                        Icon(Icons.support_agent, color: Colors.white),
                         SizedBox(width: 30),
                         Text(
                           'Contact Support',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
@@ -98,7 +93,7 @@ class HelpAndSupportPage extends StatelessWidget {
                     Text(
                       'EmoRhythm@gmail.com',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 16,
                       ),
                     ),
