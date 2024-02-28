@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'navbar.dart';
 
 class HelpAndSupportPage extends StatelessWidget {
@@ -38,15 +39,16 @@ class HelpAndSupportPage extends StatelessWidget {
                         Navigator.pop(context);
                       },
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Icon(Icons.question_answer),
                         SizedBox(width: 8),
                         Text(
                           'FAQs',
-                          style: TextStyle(
+                          style: GoogleFonts.portLligatSlab(
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
                       ],

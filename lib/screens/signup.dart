@@ -12,20 +12,23 @@ class SignupPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
-          title: const Text(''),
-        ),
         backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
         body: SingleChildScrollView(
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 60, left: 20),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    color: Colors.white,
+                  ),
+                ),
+              ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 height: MediaQuery.of(context).size.height - 30,

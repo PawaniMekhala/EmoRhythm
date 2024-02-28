@@ -12,14 +12,19 @@ class HomePage extends StatelessWidget {
         title: const Text('Home Page'),
       ),
       body: Center(
-        child: Text(
-          'Welcome, $username!',
-          style: const TextStyle(
-            fontSize: 40,
-            fontFamily: 'Port Lligat Slab',
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Welcome, $username!',
+              style: const TextStyle(
+                fontSize: 40,
+                fontFamily: 'Port Lligat Slab',
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       ),
     );
