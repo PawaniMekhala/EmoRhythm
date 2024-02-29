@@ -33,7 +33,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
           'Favorites',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 20,
+            fontSize: 28,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -70,7 +70,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 '${index + 1}. ${favoriteSongs[index]}', // Display index number
                 style: const TextStyle(
                   color: Colors.white, // Text color
-                  fontSize: 16.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
