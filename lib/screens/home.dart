@@ -2,9 +2,10 @@ import 'package:EmoRythm/screens/emotion_result.dart';
 import 'package:flutter/material.dart';
 import 'about_us.dart';
 import 'activity_log.dart';
+import 'favorites.dart';
 import 'help_and_support.dart';
 import 'navbar.dart';
-import 'settings.dart'; // Assuming you have a SettingsPage
+import 'settings.dart'; 
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -81,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ActivityLogPage()),
+                            builder: (context) => const FavoritesPage()),
                       );
                     },
                   ),

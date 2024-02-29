@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'navbar.dart';
 
 class AboutUsPage extends StatelessWidget {
