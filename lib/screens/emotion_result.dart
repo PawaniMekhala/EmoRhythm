@@ -94,14 +94,14 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
             margin: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               color: Colors.blue, // Rectangle color
-              borderRadius: BorderRadius.circular(10.0), // Round corner radius
+              borderRadius: BorderRadius.circular(30.0), // Round corner radius
             ),
             child: ListTile(
               title: Text(
                 '${index + 1}. ${playlist[index]}', // Display index number
                 style: const TextStyle(
                   color: Colors.white, // Text color
-                  fontSize: 16.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -110,7 +110,7 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
                     color: Colors.white), // Three-dot icon
                 onPressed: () {
                   // Add functionality for the three-dot icon if needed
-                  // For example, show a menu with more options
+                   _showOptionsDialog(context, playlist[index]);
                 },
               ),
             ),
@@ -119,7 +119,40 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
       ),
     );
   }
-  
+  void _showOptionsDialog(BuildContext context, String song) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(song),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text('Play Song'),
+                onTap: () {
+                  // Add functionality for Option 1
+                  Navigator.of(context)
+                      .pop(); // Close the dialog after selecting an option
+                },
+              ),
+              ListTile(
+                title: const Text('Add to favorites'),
+                onTap: () {
+                  
+                  // Add functionality for Option 2
+                  Navigator.of(context)
+                      .pop(); // Close the dialog after selecting an option
+                },
+              ),
+              // Add more options as needed
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   //Feedback and share buttons
   Widget _buildButtons() {
     return Row(

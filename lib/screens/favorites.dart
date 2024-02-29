@@ -13,7 +13,11 @@ class _FavoritesPageState extends State<FavoritesPage> {
   get isDarkModeEnabled => false;
 
   // Replace this with your list of favorite songs
-  List<String> favoriteSongs = ["Favorite Song 1", "Favorite Song 2", "Favorite Song 3"];
+  List<String> favoriteSongs = [
+    "Favorite Song 1",
+    "Favorite Song 2",
+    "Favorite Song 3"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +47,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-           
             const SizedBox(height: 20),
             _buildFavoriteMusicList(favoriteSongs),
           ],
         ),
       ),
-       bottomNavigationBar: const BottomNavBar(),
-       
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 
@@ -63,7 +65,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
             margin: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               color: Colors.blue, // Rectangle color
-              borderRadius: BorderRadius.circular(10.0), // Round corner radius
+              borderRadius: BorderRadius.circular(50.0), // Round corner radius
             ),
             child: ListTile(
               title: Text(
@@ -75,7 +77,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 ),
               ),
               trailing: IconButton(
-                icon: const Icon(Icons.more_vert, color: Colors.white), // Three-dot icon
+                icon: const Icon(Icons.more_vert,
+                    color: Colors.white), // Three-dot icon
                 onPressed: () {
                   _showOptionsDialog(context, favoriteSongs[index]);
                 },
@@ -84,38 +87,47 @@ class _FavoritesPageState extends State<FavoritesPage> {
           );
         },
       ),
-      
     );
-   
   }
+
   void _showOptionsDialog(BuildContext context, String song) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: Text(song),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              title: const Text('Play Song'),
-              onTap: () {
-                // Add functionality for Option 1
-                Navigator.of(context).pop(); // Close the dialog after selecting an option
-              },
-            ),
-            ListTile(
-              title: const Text('Remove from favorites'),
-              onTap: () {
-                // Add functionality for Option 2
-                Navigator.of(context).pop(); // Close the dialog after selecting an option
-              },
-            ),
-            // Add more options as needed
-          ],
-        ),
-      );
-    },
-  );
-}
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(song),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text('Play Song'),
+                onTap: () {
+                  // Add functionality for Option 1
+                  Navigator.of(context)
+                      .pop(); // Close the dialog after selecting an option
+                },
+              ),
+              ListTile(
+                title: const Text('Remove from favorites'),
+                onTap: () {
+                  _deleteSong(song);
+                  // Add functionality for Option 2
+                  Navigator.of(context)
+                      .pop(); // Close the dialog after selecting an option
+                },
+              ),
+              // Add more options as needed
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _deleteSong(String song) {
+    // Add functionality to delete the song from your data structure
+    setState(() {
+      favoriteSongs.remove(song);
+    });
+  }
 }
