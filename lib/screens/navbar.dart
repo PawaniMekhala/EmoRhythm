@@ -16,7 +16,9 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int _currentIndex = 0;
+  // ignore: unused_field
   Color _selectedIconColor = Colors.red; // Define color for selected icon
+  // ignore: unused_field, prefer_final_fields
   Color _defaultIconColor =
       Colors.grey; // Define default color for unselected icons
 
@@ -30,6 +32,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
+                // ignore: prefer_const_constructors
                 builder: (context) => HomePage(
                       username: '',
                     )),

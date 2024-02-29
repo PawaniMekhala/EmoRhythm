@@ -1,3 +1,4 @@
+import 'package:EmoRythm/screens/emotion_result.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'screens/landing.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromRGBO(10, 39, 66, 1),
       ),
       home: const Splash(),
+      
     );
   }
 }
