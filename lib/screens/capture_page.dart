@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'navbar.dart';
 //import 'dart:io';
-
-// ignore_for_file: use_build_context_synchronously
+import 'package:google_fonts/google_fonts.dart';
 
 class CapturePage extends StatelessWidget {
   const CapturePage({Key? key});
@@ -18,7 +17,10 @@ class CapturePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 60, left: 20),
             child: IconButton(
-              icon: const Icon(Icons.arrow_back),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -31,15 +33,15 @@ class CapturePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image.asset(
-                    'assets/logo/Emo Rhythm.png', // Provide the path to your logo image
-                    width: 350, // Adjust the width as needed
-                    height: 350, // Adjust the height as needed
+                    'assets/logo/Emo Rhythm.png',
+                    width: 350,
+                    height: 350,
                   ),
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     'Capture the Emotion',
-                    style: TextStyle(
-                      fontSize: 22,
+                    style: GoogleFonts.portLligatSlab(
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -56,7 +58,6 @@ class CapturePage extends StatelessWidget {
                         'Capture',
                         style: TextStyle(
                           fontSize: 18,
-                          //fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
@@ -92,8 +93,7 @@ class CapturePage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar:
-          const BottomNavBar(), // Add the custom bottom navigation bar
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 

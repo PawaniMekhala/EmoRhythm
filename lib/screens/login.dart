@@ -32,16 +32,16 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
-        title: Text(''),
-      ),
+      // appBar: AppBar(
+      //   // leading: IconButton(
+      //   //   icon: Icon(Icons.arrow_back),
+      //   //   onPressed: () {
+      //   //     Navigator.pop(context);
+      //   //   },
+      //   // ),
+      //   backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
+      //   title: Text(''),
+      // ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
