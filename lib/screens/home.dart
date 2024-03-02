@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                   ItemHome(
                     title: 'About Us',
                     icon: Icons.info,
-                    onTap: () {                   
+                    onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -120,7 +120,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
-                  
                   ),
                   ItemHome(
                     title: 'Emotion',
@@ -135,11 +134,11 @@ class _HomePageState extends State<HomePage> {
                         MaterialPageRoute(
                           builder: (context) => EmotionResultsPage(
                             mood: mood,
-                            playlist: playlist,),
+                            playlist: playlist,
+                          ),
                         ),
                       );
                     },
-                  
                   ),
                 ],
               ),
