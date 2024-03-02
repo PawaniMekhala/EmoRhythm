@@ -92,8 +92,8 @@ class ContactUs extends StatelessWidget {
                             //fontWeight: FontWeight.bold,
                           ),
                           hintText: 'Name',
-                          hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 58, 56, 56),
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 58, 56, 56),
                             //fontWeight: FontWeight.bold,
                           ),
                           border: OutlineInputBorder(
@@ -110,8 +110,8 @@ class ContactUs extends StatelessWidget {
                             //fontWeight: FontWeight.bold,
                           ),
                           hintText: 'Email',
-                          hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 58, 56, 56),
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 58, 56, 56),
                             //fontWeight: FontWeight.bold,
                           ),
                           border: OutlineInputBorder(
@@ -129,8 +129,8 @@ class ContactUs extends StatelessWidget {
                             //fontWeight: FontWeight.bold,
                           ),
                           hintText: 'Message',
-                          hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 58, 56, 56),
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 58, 56, 56),
                             //fontWeight: FontWeight.bold,
                           ),
                           border: OutlineInputBorder(
@@ -143,14 +143,6 @@ class ContactUs extends StatelessWidget {
                         onPressed: () {
                           // Handle send button press
                         },
-                        child: Text(
-                          'Send',
-                          style: TextStyle(
-                            fontSize: 18,
-                            //fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
                         style: ElevatedButton.styleFrom(
                           shape: const StadiumBorder(),
                           padding: const EdgeInsets.symmetric(
@@ -158,6 +150,14 @@ class ContactUs extends StatelessWidget {
                               horizontal:
                                   24), // Adjust the horizontal padding to change width
                           backgroundColor: Color.fromRGBO(10, 39, 66, 1),
+                        ),
+                        child: const Text(
+                          'Send',
+                          style: TextStyle(
+                            fontSize: 18,
+                            //fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
