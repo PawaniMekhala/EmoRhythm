@@ -86,6 +86,82 @@ class ContactUsFormState extends State<ContactUs> {
                           color: Colors.white,
                         ),
                       ),
+
+                      const SizedBox(height: 40),
+                      TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Enter Your Name',
+                          labelStyle: const TextStyle(
+                            color: Color.fromARGB(255, 58, 56, 56),
+                            //fontWeight: FontWeight.bold,
+                          ),
+                          hintText: 'Name',
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 58, 56, 56),
+                            //fontWeight: FontWeight.bold,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Enter Your Email',
+                          labelStyle: const TextStyle(
+                            color: Color.fromARGB(255, 58, 56, 56),
+                            //fontWeight: FontWeight.bold,
+                          ),
+                          hintText: 'Email',
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 58, 56, 56),
+                            //fontWeight: FontWeight.bold,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        maxLines: 3,
+                        decoration: InputDecoration(
+                          labelText: 'Message',
+                          labelStyle: const TextStyle(
+                            color: Color.fromARGB(255, 58, 56, 56),
+                            //fontWeight: FontWeight.bold,
+                          ),
+                          hintText: 'Message',
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 58, 56, 56),
+                            //fontWeight: FontWeight.bold,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Handle send button press
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: const StadiumBorder(),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 15,
+                              horizontal:
+                                  24), // Adjust the horizontal padding to change width
+                          backgroundColor: Color.fromRGBO(10, 39, 66, 1),
+                        ),
+                        child: const Text(
+                          'Send',
+                          style: TextStyle(
+                            fontSize: 18,
+                            //fontWeight: FontWeight.bold,
+                            color: Colors.white,
+
                     ),
                     // const SizedBox(height: 20),
                     // const Center(
@@ -125,6 +201,7 @@ class ContactUsFormState extends State<ContactUs> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
+
                           ),
                         ),
                       ),

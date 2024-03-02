@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'contact_us.dart';
 import 'navbar.dart';
+ // Import the Contact Us page
 
 class AboutUsPage extends StatelessWidget {
   const AboutUsPage({super.key});
@@ -35,7 +37,7 @@ class AboutUsPage extends StatelessWidget {
             const SizedBox(height: 4),
             Container(
               width: 350,
-              height: 380,
+              height: 321,
               margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.lightBlue[200],
@@ -51,19 +53,20 @@ class AboutUsPage extends StatelessWidget {
               ),
               child: Container(
                 margin: const EdgeInsets.symmetric(vertical: 20),
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(15),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SingleChildScrollView(
                       child: Text(
-                        "At EmoRhythm, we are passionate about transforming the way music influences emotions. Our mission revolves around creating an innovative emotion-based music recommendation system that harnesses facial expressions to understand and interpret a person's feelings in real-time.",
+                        "We are passionate about transforming the way music influences emotions. Our mission revolves around creating an innovative emotion-based music recommendation system that harnesses facial expressions to understand and interpret a person's feelings in real-time.",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
                         ),
                       ),
                     ),
+                    SizedBox(height: 10),
                     Text(
                       "Join with us on this journey! ",
                       style: TextStyle(
@@ -72,18 +75,35 @@ class AboutUsPage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 14),
-                    Text(
-                      'EmoRhythm@gmail.com',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
+                    
+                    
                   ],
+                  
+                ),
+                
+              ),
+              
+            ),
+            const SizedBox(height: 14),
+            ElevatedButton(
+              onPressed: () {
+                        // Navigate to the Contact Us page
+               Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ContactUs()));
+             },
+             style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightBlue,
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+              child: const Text(
+                "Contact Us",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
                 ),
               ),
-            ),
+          ),         
+
             const SizedBox(
               width: 200,
               height: 200,
