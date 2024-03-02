@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'navbar.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -15,48 +16,71 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back,
-              color: isDarkModeEnabled ? Colors.white : Colors.black),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
-      ),
       body: Container(
         color: const Color.fromRGBO(10, 39, 66, 1),
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            const Center(
-              child: Text(
-                'Settings',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.bold,
-                ),
+            // Image
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/logo/Emo Rhythm.png', // Path to your logo image
+                width: 350, // Adjust the width as needed
+                height: 350, // Adjust the height as needed
               ),
             ),
-            const SizedBox(height: 40.0),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: Container(
-                color: Colors.lightBlue,
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildSettingItem('Edit Profile', Icons.edit),
-                    _buildSettingItem('Language', Icons.language),
-                    _buildNotificationToggle(),
-                    _buildSettingItem('Privacy', Icons.privacy_tip),
-                    _buildDarkModeToggle(),
-                  ],
+            // Back Icon
+            Positioned(
+              top: 30,
+              left: 10,
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: isDarkModeEnabled ? Colors.white : Colors.black,
                 ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+            // Settings content
+            Positioned.fill(
+              top: 300, // Adjust the top position as needed
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Text(
+                      'Settings',
+                      style: GoogleFonts.portLligatSlab(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: Container(
+                      color: const Color(0xFF1B5699),
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildSettingItem('Edit Profile', Icons.edit),
+                          _buildSettingItem('Language', Icons.language),
+                          _buildNotificationToggle(),
+                          _buildSettingItem('Privacy', Icons.privacy_tip),
+                          _buildDarkModeToggle(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../navbar.dart';
 
 class UpdateProfilePage extends StatefulWidget {
@@ -17,12 +17,12 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Edit Profile',
-          style: TextStyle(
-            color: Colors.white,
+          style: GoogleFonts.portLligatSlab(
             fontSize: 28,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
         leading: IconButton(
@@ -36,7 +36,6 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
         ),
         backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
       ),
-      
       body: Container(
         padding: const EdgeInsets.only(left: 15, top: 20, right: 15),
         child: GestureDetector(
@@ -100,10 +99,14 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
-                    child: const Text(
+                    child: Text(
                       "Cancel",
-                      style: TextStyle(
-                          fontSize: 18, letterSpacing: 2, color: Colors.black),
+                      style: GoogleFonts.portLligatSlab(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                   ElevatedButton(
@@ -113,11 +116,15 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
-                    child: const Text("Save",
-                        style: TextStyle(
-                            fontSize: 18,
-                            letterSpacing: 2,
-                            color: Colors.white)),
+                    child: Text(
+                      "Save",
+                      style: GoogleFonts.portLligatSlab(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                        color: Colors.white,
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -129,28 +136,32 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
     );
   }
 
-  Widget buildTextField(String lableText, String placeholder, bool isPasswordTextField) {
+  Widget buildTextField(
+      String lableText, String placeholder, bool isPasswordTextField) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30),
       child: TextField(
         obscureText: isPasswordTextField ? isObscurePassword : false,
+        style: TextStyle(color: Colors.grey), // Setting input text color
         decoration: InputDecoration(
-            suffixIcon: isPasswordTextField?
-                  IconButton(
-                    icon: isObscurePassword?
-                      const Icon(
-                        Icons.remove_red_eye,
-                        color: Colors.grey,
-                      )
-                    : const Icon(
-                        Icons.visibility_off,
-                        color: Colors.grey,
-                      ), onPressed: () { 
-                        setState(() {
+            suffixIcon: isPasswordTextField
+                ? IconButton(
+                    icon: isObscurePassword
+                        ? const Icon(
+                            Icons.remove_red_eye,
+                            color: Colors.grey,
+                          )
+                        : const Icon(
+                            Icons.visibility_off,
+                            color: Colors.grey,
+                          ),
+                    onPressed: () {
+                      setState(() {
                         isObscurePassword = !isObscurePassword;
                       });
-                       },
-                  ): null,
+                    },
+                  )
+                : null,
             contentPadding: const EdgeInsets.only(bottom: 5),
             labelText: lableText,
             labelStyle: const TextStyle(
@@ -164,10 +175,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
               fontWeight: FontWeight.bold,
               color: Colors.grey,
             )),
-           
       ),
     );
-
-}
-  
+  }
 }

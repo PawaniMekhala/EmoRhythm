@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'navbar.dart';
-//import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
 
 class CapturePage extends StatelessWidget {

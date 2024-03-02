@@ -5,27 +5,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'thank_you.dart';
 import 'navbar.dart';
 
-void initState() {
-  SystemChannels.textInput.invokeMethod('TextInput.hide');
-  initState();
-}
-
 class ContactUs extends StatefulWidget {
   const ContactUs({Key? key}) : super(key: key);
 
   @override
-  ContactUsFormState createState() => ContactUsFormState();
+  _ContactUsState createState() => _ContactUsState();
 }
 
-class _ContactUsFormData {
-  String email = '';
-  String name = '';
-  String message = '';
-}
-
-class ContactUsFormState extends State<ContactUs> {
+class _ContactUsState extends State<ContactUs> {
   final _formKey = GlobalKey<FormState>();
   final _ContactUsFormData _data = _ContactUsFormData();
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
+  }
 
   bool _validateEmail(String value) {
     String pattern =
@@ -86,95 +81,13 @@ class ContactUsFormState extends State<ContactUs> {
                           color: Colors.white,
                         ),
                       ),
-
-                      const SizedBox(height: 40),
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: 'Enter Your Name',
-                          labelStyle: const TextStyle(
-                            color: Color.fromARGB(255, 58, 56, 56),
-                            //fontWeight: FontWeight.bold,
-                          ),
-                          hintText: 'Name',
-                          hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 58, 56, 56),
-                            //fontWeight: FontWeight.bold,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: 'Enter Your Email',
-                          labelStyle: const TextStyle(
-                            color: Color.fromARGB(255, 58, 56, 56),
-                            //fontWeight: FontWeight.bold,
-                          ),
-                          hintText: 'Email',
-                          hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 58, 56, 56),
-                            //fontWeight: FontWeight.bold,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        maxLines: 3,
-                        decoration: InputDecoration(
-                          labelText: 'Message',
-                          labelStyle: const TextStyle(
-                            color: Color.fromARGB(255, 58, 56, 56),
-                            //fontWeight: FontWeight.bold,
-                          ),
-                          hintText: 'Message',
-                          hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 58, 56, 56),
-                            //fontWeight: FontWeight.bold,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Handle send button press
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 15,
-                              horizontal:
-                                  24), // Adjust the horizontal padding to change width
-                          backgroundColor: Color.fromRGBO(10, 39, 66, 1),
-                        ),
-                        child: const Text(
-                          'Send',
-                          style: TextStyle(
-                            fontSize: 18,
-                            //fontWeight: FontWeight.bold,
-                            color: Colors.white,
-
                     ),
-                    // const SizedBox(height: 20),
-                    // const Center(
-                    //   child: Text("Happy to hear from you",
-                    //       style: TextStyle(color: Colors.white, fontSize: 19)),
-                    // ),
-
-                    //const SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     _buildFormField("Name"),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     _buildFormField("Email"),
-                    const SizedBox(height: 30),
-                    _buildFormField("Message", maxLines: 10),
+                    const SizedBox(height: 10),
+                    _buildFormField("Message", maxLines: 3),
                     const SizedBox(height: 30),
                     Center(
                       child: SizedBox(
@@ -193,15 +106,15 @@ class ContactUsFormState extends State<ContactUs> {
                               );
                             }
                           },
-                          child: Text("Send",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20)),
+                          child: const Text(
+                            "Send",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF1B5699),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
-
                           ),
                         ),
                       ),
@@ -218,6 +131,9 @@ class ContactUsFormState extends State<ContactUs> {
   }
 
   Widget _buildFormField(String label, {int maxLines = 1}) {
+    if (label == "Message") {
+      maxLines = 5; // Set maxLines to 5 for the Message field
+    }
     return Center(
       child: SizedBox(
         width: 300.0,
@@ -257,4 +173,10 @@ class ContactUsFormState extends State<ContactUs> {
       ),
     );
   }
+}
+
+class _ContactUsFormData {
+  String email = '';
+  String name = '';
+  String message = '';
 }

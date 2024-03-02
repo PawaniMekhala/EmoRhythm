@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'navbar.dart';
 
 class ActivityLogPage extends StatefulWidget {
-  
-
-  
   const ActivityLogPage({super.key});
 
   @override
@@ -14,8 +11,6 @@ class ActivityLogPage extends StatefulWidget {
 
 class _ActivityLogPageState extends State<ActivityLogPage> {
   get isDarkModeEnabled => false;
-  
-
 
   @override
   Widget build(BuildContext context) {
@@ -31,23 +26,21 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
           },
         ),
         backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
-       
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          
           children: [
-            const Center(
+            Center(
               child: Text(
                 'Activity Log',
-                style: TextStyle(
-                color: Colors.white,
-                fontSize: 28.0,
-                fontWeight: FontWeight.bold,
+                style: GoogleFonts.portLligatSlab(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
-                      ),
             ),
             const SizedBox(height: 50.0),
             _buildRecommendationHistoryContainer(),
@@ -58,13 +51,16 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
       ),
       bottomNavigationBar: const BottomNavBar(),
     );
-    
   }
 
   Widget _buildRecommendationHistoryContainer() {
     // Replace these with your actual data structures
-    final List<String> recommendationHistory = ["Recommendation 1", "Recommendation 2", "Recommendation 3"];
-    
+    final List<String> recommendationHistory = [
+      "Recommendation 1",
+      "Recommendation 2",
+      "Recommendation 3"
+    ];
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.lightBlue,
@@ -101,24 +97,18 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
               ),
             ),
         ],
-      
       ),
-      
     );
-    
   }
 
   Widget _buildEmotionResultsContainer() {
-
-     // Replace these with your actual data structures
+    // Replace these with your actual data structures
     final List<String> emotionResults = ["Happy", "Sad", "Angry"];
-    
+
     return Container(
-     
       decoration: BoxDecoration(
         color: Colors.lightBlue, // You can change the color
         borderRadius: BorderRadius.circular(10.0),
-        
       ),
       padding: const EdgeInsets.all(16.0),
       child: Column(

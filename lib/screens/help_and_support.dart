@@ -32,11 +32,11 @@ class HelpAndSupportPage extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.question_answer_rounded,
                           color: Colors.white,
                         ),
-                        SizedBox(width: 15),
+                        const SizedBox(width: 15),
                         Text(
                           'FAQs',
                           style: GoogleFonts.portLligatSlab(

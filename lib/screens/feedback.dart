@@ -24,7 +24,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
       body: Center(
         child: Container(
           width: 350,
-          height: 650,
+          height: 680,
           margin: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,7 +63,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               ),
               Container(
                 width: 300,
-                height: 400,
+                height: 480,
                 margin: const EdgeInsets.symmetric(vertical: 20),
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -87,7 +87,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       ),
                       maxLines: 8, // Allowing multiple lines for input
                     ),
-                    //SizedBox(height: 20),
                   ],
                 ),
               ),

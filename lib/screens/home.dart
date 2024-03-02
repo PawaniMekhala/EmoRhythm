@@ -1,4 +1,5 @@
 import 'package:EmoRythm/screens/emotion_result.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'about_us.dart';
 import 'activity_log.dart';
@@ -6,7 +7,7 @@ import 'favorites.dart';
 import 'help_and_support.dart';
 import 'navbar.dart';
 import 'profile/user_profile.dart';
-import 'settings.dart'; 
+import 'settings.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -29,9 +30,8 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               widget.username,
-              style: const TextStyle(
-                fontSize: 20,
-                fontFamily: 'Port Lligat Slab',
+              style: GoogleFonts.portLligatSlab(
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -44,7 +44,9 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const UserProfilePage(username:"Imasha")),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const UserProfilePage(username: "Imasha")),
                 );
               },
             ),

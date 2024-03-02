@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import 'capture_page.dart';
 import 'home.dart';
 import 'settings.dart';
-import 'contact_us.dart';
-import 'feedback.dart';
-//import 'UserProfile.dart'; // Import your User Profile page file
-//import 'MusicPlayer.dart'; // Import your Music Player page file
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -17,9 +13,7 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int _currentIndex = 0;
-  // ignore: unused_field
   Color _selectedIconColor = Colors.red; // Define color for selected icon
-  // ignore: unused_field, prefer_final_fields
   Color _defaultIconColor =
       Colors.grey; // Define default color for unselected icons
 
@@ -42,22 +36,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
         case 1:
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const ContactUs()),
+            MaterialPageRoute(builder: (context) => const CapturePage()),
           );
           break;
         case 2:
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const CapturePage()),
+            MaterialPageRoute(
+                builder: (context) => const UserProfilePage(
+                      username: "Imasha",
+                    )),
           );
           break;
         case 3:
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const UserProfilePage(username: "Imasha",)),
-          );
-          break;
-        case 4:
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const SettingsPage()),
@@ -91,14 +82,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 //     : Colors.grey, // Change color based on the selected index
               ),
               label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.music_note,
-                // color: _currentIndex == 1
-                //     ? Colors.red
-                //     : Colors.grey, // Change color based on the selected index
-              ),
-              label: "Music Player"),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.camera_alt,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home.dart';
 import 'signup.dart';
-//import 'Registration.dart';
+import 'forgot_password.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,16 +32,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   // leading: IconButton(
-      //   //   icon: Icon(Icons.arrow_back),
-      //   //   onPressed: () {
-      //   //     Navigator.pop(context);
-      //   //   },
-      //   // ),
-      //   backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
-      //   title: Text(''),
-      // ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             _header(context),
+            const SizedBox(height: 20),
             _inputField(context),
             const SizedBox(height: 10),
             _signup(context),
@@ -149,7 +140,6 @@ _header(context) {
           fontFamily: 'Port Lligat Slab',
         ),
       ),
-      //const SizedBox(height: 10),
     ],
   );
 }
@@ -160,6 +150,7 @@ _inputField(context) {
       // Username Field
       buildTextFieldWithIcon(
         icon: Icons.person,
+        //color: Colors.black,
         hintText: 'Username',
       ),
       const SizedBox(height: 10),
@@ -170,13 +161,21 @@ _inputField(context) {
         //labelText: 'Password',
         isPassword: true,
       ),
+      const SizedBox(height: 10),
       TextButton(
-        onPressed: () {},
+        onPressed: () {
+          // Navigate to ForgotPasswordScreen when the button is clicked
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ForgotPassword()),
+          );
+        },
         child: const Text(
           'Forgot Password',
           style: TextStyle(color: Colors.blue, fontSize: 15),
         ),
       ),
+      const SizedBox(height: 10),
       Container(
         height: 50,
         width: 300,
@@ -216,7 +215,6 @@ _signup(context) {
       const Text(
         "Don't have an account? ",
         style: TextStyle(
-          //fontFamily: 'Port Lligat Slab',
           color: Colors.white,
         ),
       ),
@@ -230,7 +228,6 @@ _signup(context) {
         child: const Text(
           "Sign Up",
           style: TextStyle(
-            //fontFamily: 'Port Lligat Slab',
             fontSize: 15.0,
             color: Color.fromARGB(255, 109, 180, 238),
           ),
@@ -243,15 +240,16 @@ _signup(context) {
 Widget buildTextFieldWithIcon({
   required IconData icon,
   required String hintText,
+  Color iconColor = Colors.black, // Default color
   bool isPassword = false,
 }) {
   return Container(
-    //width: 400,
     padding: const EdgeInsets.symmetric(horizontal: 10),
     child: TextField(
       obscureText: isPassword,
+      style: const TextStyle(color: Colors.grey), // Setting input text color
       decoration: InputDecoration(
-        prefixIcon: Icon(icon),
+        prefixIcon: Icon(icon, color: iconColor), // Setting icon color),
         hintText: hintText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(35),

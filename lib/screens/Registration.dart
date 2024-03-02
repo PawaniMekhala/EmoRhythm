@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'login.dart';
 import 'signup.dart';
-//import 'home.dart';
 
 void main() {
   runApp(const MyApp());

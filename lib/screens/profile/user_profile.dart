@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../activity_log.dart';
 import '../favorites.dart';
 import '../login.dart';
@@ -25,12 +25,12 @@ class UserProfilePage extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        title: const Text(
+        title: Text(
           'Profile',
-          style: TextStyle(
-            color: Colors.white,
+          style: GoogleFonts.portLligatSlab(
             fontSize: 28,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
         backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
@@ -63,7 +63,7 @@ class UserProfilePage extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-             
+
               const Text(
                 'Nick name',
                 style: TextStyle(
@@ -85,12 +85,14 @@ class UserProfilePage extends StatelessWidget {
                             builder: (context) => const UpdateProfilePage()));
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.lightBlue, side: BorderSide.none, shape: const StadiumBorder()),
+                      backgroundColor: Colors.lightBlue,
+                      side: BorderSide.none,
+                      shape: const StadiumBorder()),
                   child: const Text(
                     'Edit Profile',
                     style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.0,
+                      color: Colors.black,
+                      fontSize: 18.0,
                     ),
                   ),
                 ),
@@ -101,51 +103,51 @@ class UserProfilePage extends StatelessWidget {
 
               /// -- MENU
               ProfileMenuWidget(
-                title: "Settings", 
-                icon: Icons.settings_outlined, 
-                onPress: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SettingsPage()),
-                  );
-                }),
-              
+                  title: "Settings",
+                  icon: Icons.settings_outlined,
+                  onPress: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SettingsPage()),
+                    );
+                  }),
+
               ProfileMenuWidget(
-                title: "Favorites", 
-                icon: Icons.favorite_border, 
-                onPress: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const FavoritesPage()),
-                  );
-                }
-              ),
-              
+                  title: "Favorites",
+                  icon: Icons.favorite_border,
+                  onPress: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FavoritesPage()),
+                    );
+                  }),
+
               ProfileMenuWidget(
-                title: "Activity Log", 
-                icon: Icons.assignment_outlined, 
-                onPress: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ActivityLogPage()),
-                  );
-                }
-              ),
+                  title: "Activity Log",
+                  icon: Icons.assignment_outlined,
+                  onPress: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ActivityLogPage()),
+                    );
+                  }),
 
               const Divider(),
               const SizedBox(height: 10),
 
               ProfileMenuWidget(
-                title: "Log Out", 
-                icon: Icons.logout_rounded, 
-                onPress: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                    builder: (context) => const LoginPage()),
-                );
-                }
-              ),
+                  title: "Log Out",
+                  icon: Icons.logout_rounded,
+                  onPress: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    );
+                  }),
             ],
           ),
         ),
@@ -186,7 +188,7 @@ class ProfileMenuWidget extends StatelessWidget {
           fontFamily: 'Port Lligat Slab',
           color: Colors.white, // Change the text color here
           fontSize: 20,
-           // You can adjust the font size if needed
+          // You can adjust the font size if needed
         ),
       ),
     );

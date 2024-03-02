@@ -1,6 +1,6 @@
 import 'package:EmoRythm/screens/feedback.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'navbar.dart';
 
 class EmotionResultsPage extends StatefulWidget {
@@ -38,13 +38,13 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Center(
+            Center(
               child: Text(
                 'Emotion Result',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28.0,
+                style: GoogleFonts.portLligatSlab(
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -54,15 +54,12 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
             _buildMusicList(widget.playlist),
 
             _buildButtons(),
-
           ],
         ),
       ),
-      
       bottomNavigationBar: const BottomNavBar(),
     );
   }
-  
 
   Widget _buildMoodEmoji() {
     return Text(
@@ -110,7 +107,7 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
                     color: Colors.white), // Three-dot icon
                 onPressed: () {
                   // Add functionality for the three-dot icon if needed
-                   _showOptionsDialog(context, playlist[index]);
+                  _showOptionsDialog(context, playlist[index]);
                 },
               ),
             ),
@@ -119,6 +116,7 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
       ),
     );
   }
+
   void _showOptionsDialog(BuildContext context, String song) {
     showDialog(
       context: context,
@@ -139,7 +137,6 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
               ListTile(
                 title: const Text('Add to favorites'),
                 onTap: () {
-                  
                   // Add functionality for Option 2
                   Navigator.of(context)
                       .pop(); // Close the dialog after selecting an option
@@ -183,7 +180,6 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
     );
   }
 
-
   void _handleShare() {
     // You can customize this function to share links to social media
     showDialog(
@@ -197,8 +193,10 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
             children: [
               const Text('Share your playlist on:'),
               const SizedBox(height: 8),
-              _buildSocialMediaLink('Facebook', 'https://www.facebook.com/yourplaylistlink'),
-              _buildSocialMediaLink('Twitter', 'https://www.twitter.com/yourplaylistlink'),
+              _buildSocialMediaLink(
+                  'Facebook', 'https://www.facebook.com/yourplaylistlink'),
+              _buildSocialMediaLink(
+                  'Twitter', 'https://www.twitter.com/yourplaylistlink'),
               // Add more social media links as needed
             ],
           ),
@@ -216,7 +214,8 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
         padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: Text(
           '$platform: $link',
-          style: const TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
+          style: const TextStyle(
+              color: Colors.blue, decoration: TextDecoration.underline),
         ),
       ),
     );

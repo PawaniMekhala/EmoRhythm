@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'navbar.dart';
 
 class FavoritesPage extends StatefulWidget {
@@ -33,12 +33,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
           },
         ),
         backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
-        title: const Text(
+        title: Text(
           'Favorites',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 28,
+          style: GoogleFonts.portLligatSlab(
+            fontSize: 40,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
       ),
