@@ -1,3 +1,4 @@
+import 'package:EmoRythm/screens/profile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'capture_page.dart';
 import 'home.dart';
@@ -53,7 +54,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         case 3:
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const FeedbackPage()),
+            MaterialPageRoute(builder: (context) => const UserProfilePage(username: "Imasha",)),
           );
           break;
         case 4:

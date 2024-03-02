@@ -5,6 +5,7 @@ import 'activity_log.dart';
 import 'favorites.dart';
 import 'help_and_support.dart';
 import 'navbar.dart';
+import 'profile/user_profile.dart';
 import 'settings.dart'; 
 
 class HomePage extends StatefulWidget {
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                  MaterialPageRoute(builder: (context) => const UserProfilePage(username:"Imasha")),
                 );
               },
             ),
