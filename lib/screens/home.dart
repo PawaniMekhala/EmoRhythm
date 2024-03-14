@@ -1,4 +1,5 @@
 import 'package:EmoRythm/screens/emotion_result.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'about_us.dart';
 import 'activity_log.dart';
@@ -6,7 +7,7 @@ import 'favorites.dart';
 import 'help_and_support.dart';
 import 'navbar.dart';
 import 'profile/user_profile.dart';
-import 'settings.dart'; 
+import 'settings.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -20,6 +21,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    User? currentUser = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -28,7 +31,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              widget.username,
+              currentUser!.email!,
               style: const TextStyle(
                 fontSize: 20,
                 fontFamily: 'Port Lligat Slab',
@@ -44,7 +47,9 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const UserProfilePage(username:"Imasha")),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const UserProfilePage(username: "")),
                 );
               },
             ),
@@ -125,10 +130,8 @@ class _HomePageState extends State<HomePage> {
                     title: 'Emotion',
                     icon: Icons.face,
                     onTap: () {
-                      // Replace with your actual mood and playlist data
                       String mood = "happy";
                       List<String> playlist = ["Song 1", "Song 2", "Song 3"];
-
                       Navigator.push(
                         context,
                         MaterialPageRoute(

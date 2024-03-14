@@ -4,20 +4,20 @@ import 'login.dart';
 import 'signup.dart';
 //import 'home.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+// void main() {
+//   runApp(const MyApp());
+// }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: RegistrationPage(),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       home: RegistrationPage(),
+//     );
+//   }
+// }
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});

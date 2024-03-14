@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "358714290872",
+    "project_id": "emorhythm-be997",
+    "storage_bucket": "emorhythm-be997.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358714290872:android:fe1ce662ac9a59775f3a4d",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358714290872-0jmnu5q41bdj311aefk7gnegcqkuk2f7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfTnuQeCtQzVa03_ayGBg_3bytOxgELrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358714290872-0jmnu5q41bdj311aefk7gnegcqkuk2f7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "358714290872-g1ii19dt9s66oht714ga6365mh6ghuve.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication2.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

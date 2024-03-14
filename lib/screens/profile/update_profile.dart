@@ -1,4 +1,7 @@
+import 'package:EmoRythm/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../navbar.dart';
 
@@ -12,6 +15,21 @@ class UpdateProfilePage extends StatefulWidget {
 class _UpdateProfilePageState extends State<UpdateProfilePage> {
   get isDarkModeEnabled => false;
   bool isObscurePassword = true;
+  final _fullNameController = TextEditingController();
+  final _nickNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  User? currentUser = FirebaseAuth.instance.currentUser;
+
+  @override
+  void dispose() {
+    _fullNameController.dispose();
+    _nickNameController.dispose();
+    _passwordController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +54,6 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
         ),
         backgroundColor: const Color.fromRGBO(10, 39, 66, 1),
       ),
-      
       body: Container(
         padding: const EdgeInsets.only(left: 15, top: 20, right: 15),
         child: GestureDetector(
@@ -86,10 +103,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                 ),
               ),
               const SizedBox(height: 30),
-              buildTextField("Full Name", "Imasha Kawmudu", false),
-              buildTextField("Nick Name", "ima_00", false),
-              buildTextField("Email", "ima45@gmail.com", false),
-              buildTextField("Password", "******", true),
+              buildTextField("Full Name", _fullNameController, false),
+              buildTextField("Nick Name", _nickNameController, false),
+              buildTextField("Email", _emailController, false),
+              buildTextField("Password", _passwordController, true),
               const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,7 +124,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: updateProfile,
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue,
                         padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -129,45 +146,88 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
     );
   }
 
-  Widget buildTextField(String lableText, String placeholder, bool isPasswordTextField) {
+  Widget buildTextField(String lableText, TextEditingController controller,
+      bool isPasswordTextField) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30),
       child: TextField(
+        controller: controller,
         obscureText: isPasswordTextField ? isObscurePassword : false,
         decoration: InputDecoration(
-            suffixIcon: isPasswordTextField?
-                  IconButton(
-                    icon: isObscurePassword?
-                      const Icon(
-                        Icons.remove_red_eye,
-                        color: Colors.grey,
-                      )
-                    : const Icon(
-                        Icons.visibility_off,
-                        color: Colors.grey,
-                      ), onPressed: () { 
-                        setState(() {
+            suffixIcon: isPasswordTextField
+                ? IconButton(
+                    icon: isObscurePassword
+                        ? const Icon(
+                            Icons.remove_red_eye,
+                            color: Colors.grey,
+                          )
+                        : const Icon(
+                            Icons.visibility_off,
+                            color: Colors.grey,
+                          ),
+                    onPressed: () {
+                      setState(() {
                         isObscurePassword = !isObscurePassword;
                       });
-                       },
-                  ): null,
+                    },
+                  )
+                : null,
             contentPadding: const EdgeInsets.only(bottom: 5),
             labelText: lableText,
             labelStyle: const TextStyle(
-              fontSize: 20, // Change the font size as desired
-              color: Colors.white, // Change the color as desired
+              fontSize: 20,
+              color: Colors.white,
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
             hintStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
             )),
-           
+      ),
+    );
+  }
+
+  void updateProfile() async {
+    final fullName = _fullNameController.text.trim();
+    final nickName = _nickNameController.text.trim();
+    final newEmail = _emailController.text.trim();
+    final newPassword = _passwordController.text.trim();
+
+    if (fullName.isNotEmpty) {
+      await currentUser!.updateDisplayName(fullName);
+      await currentUser!.verifyBeforeUpdateEmail(newEmail);
+      await currentUser!.updatePassword(newPassword);
+      debugPrint('✅ User : $currentUser');
+    }
+
+    // await FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(currentUser?.uid)
+    //     .set({
+    //   'fullName': fullName,
+    //   'nickname': nickName,
+    //   'email': newEmail,
+    // });
+
+    _fullNameController.clear();
+    _nickNameController.clear();
+    _passwordController.clear();
+    _emailController.clear();
+
+    // ignore: use_build_context_synchronously
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Profile updated successfully!'),
+        duration: Duration(seconds: 2),
       ),
     );
 
-}
-  
+    Navigator.pushAndRemoveUntil(
+      // ignore: use_build_context_synchronously
+      context,
+      MaterialPageRoute(builder: (BuildContext context) => const MyApp()),
+      (Route<dynamic> route) => false,
+    );
+  }
 }
