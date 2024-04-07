@@ -37,6 +37,7 @@ dependencies:
   google_sign_in: ^5.2.4
   flutter_spinkit: ^5.2.0
   camera: ^0.10.0+8
+  url_launcher: ^6.0.9
   # sign_in_with_apple: ^3.1.2
   # facebook_login: ^3.0.0
   flutter:
