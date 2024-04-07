@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../activity_log.dart';
@@ -14,6 +15,9 @@ class UserProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User user = auth.currentUser!;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -54,7 +58,7 @@ class UserProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                username,
+                user.displayName!,
                 style: const TextStyle(
                   fontSize: 20,
                   fontFamily: 'Port Lligat Slab',
@@ -63,10 +67,9 @@ class UserProfilePage extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-             
-              const Text(
-                'Nick name',
-                style: TextStyle(
+              Text(
+                user.email!,
+                style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Port Lligat Slab',
                   fontWeight: FontWeight.w300,
@@ -85,12 +88,14 @@ class UserProfilePage extends StatelessWidget {
                             builder: (context) => const UpdateProfilePage()));
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.lightBlue, side: BorderSide.none, shape: const StadiumBorder()),
+                      backgroundColor: Colors.lightBlue,
+                      side: BorderSide.none,
+                      shape: const StadiumBorder()),
                   child: const Text(
                     'Edit Profile',
                     style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.0,
+                      color: Colors.black,
+                      fontSize: 18.0,
                     ),
                   ),
                 ),
@@ -99,52 +104,59 @@ class UserProfilePage extends StatelessWidget {
               const Divider(),
               const SizedBox(height: 10),
 
-              /// -- MENU
               ProfileMenuWidget(
-                title: "Settings", 
-                icon: Icons.settings_outlined, 
+                  title: "Settings",
+                  icon: Icons.settings_outlined,
+                  onPress: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SettingsPage()),
+                    );
+                  }),
+
+              ProfileMenuWidget(
+                  title: "Favorites",
+                  icon: Icons.favorite_border,
+                  onPress: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FavoritesPage()),
+                    );
+                  }),
+
+              ProfileMenuWidget(
+                title: "Activity Log",
+                icon: Icons.assignment_outlined,
                 onPress: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SettingsPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const ActivityLogPage()),
                   );
-                }),
-              
-              ProfileMenuWidget(
-                title: "Favorites", 
-                icon: Icons.favorite_border, 
-                onPress: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const FavoritesPage()),
-                  );
-                }
-              ),
-              
-              ProfileMenuWidget(
-                title: "Activity Log", 
-                icon: Icons.assignment_outlined, 
-                onPress: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ActivityLogPage()),
-                  );
-                }
+                },
               ),
 
               const Divider(),
               const SizedBox(height: 10),
 
               ProfileMenuWidget(
-                title: "Log Out", 
-                icon: Icons.logout_rounded, 
-                onPress: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                    builder: (context) => const LoginPage()),
-                );
-                }
+                title: "Log Out",
+                icon: Icons.logout_rounded,
+                onPress: () async {
+                  try {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.pushReplacement(
+                      // ignore: use_build_context_synchronously
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    );
+                  } catch (e) {
+                    debugPrint('Error signing out: $e');
+                  }
+                },
               ),
             ],
           ),
@@ -186,7 +198,7 @@ class ProfileMenuWidget extends StatelessWidget {
           fontFamily: 'Port Lligat Slab',
           color: Colors.white, // Change the text color here
           fontSize: 20,
-           // You can adjust the font size if needed
+          // You can adjust the font size if needed
         ),
       ),
     );

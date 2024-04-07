@@ -33,34 +33,45 @@ class _BottomNavBarState extends State<BottomNavBar> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-                // ignore: prefer_const_constructors
-                builder: (context) => HomePage(
-                      username: '',
-                    )),
+              // ignore: prefer_const_constructors
+              builder: (context) => HomePage(
+                username: '',
+              ),
+            ),
           );
           break;
         case 1:
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const ContactUs()),
+            MaterialPageRoute(
+              builder: (context) => const ContactUs(),
+            ),
           );
           break;
         case 2:
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const CapturePage()),
+            MaterialPageRoute(
+              builder: (context) => const CapturePage(),
+            ),
           );
           break;
         case 3:
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const UserProfilePage(username: "Imasha",)),
+            MaterialPageRoute(
+              builder: (context) => const UserProfilePage(
+                username: "",
+              ),
+            ),
           );
           break;
         case 4:
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const SettingsPage()),
+            MaterialPageRoute(
+              builder: (context) => const SettingsPage(),
+            ),
           );
           break;
         default:
