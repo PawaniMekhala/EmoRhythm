@@ -1,5 +1,6 @@
 import 'package:EmoRythm/screens/feedback.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'navbar.dart';
 
@@ -58,11 +59,11 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
           ],
         ),
       ),
-      
+
       bottomNavigationBar: const BottomNavBar(),
     );
   }
-  
+
 
   Widget _buildMoodEmoji() {
     return Text(
@@ -70,6 +71,8 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
       style: const TextStyle(fontSize: 100),
     );
   }
+
+
 
   String _getMoodEmoji() {
     switch (widget.mood.toLowerCase()) {
@@ -79,11 +82,22 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
         return '😢';
       case 'angry':
         return '😠';
-      // Add more cases for different facial expressions
-      default:
-        return '😐'; // Default neutral face
+      case 'surprise':
+        return '😮';
+      case 'disgust':
+        return '🤢';
+      case 'fear':
+        return '😱';
+      case 'neutral':
+        return '😐';
+    // Add more cases for different facial expressions
+      default :
+        return 'No Face'; // Default neutral face
     }
+
   }
+
+
 
   Widget _buildMusicList(List<String> playlist) {
     return Expanded(
@@ -110,7 +124,7 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
                     color: Colors.white), // Three-dot icon
                 onPressed: () {
                   // Add functionality for the three-dot icon if needed
-                   _showOptionsDialog(context, playlist[index]);
+                  _showOptionsDialog(context, playlist[index]);
                 },
               ),
             ),
@@ -131,6 +145,8 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
               ListTile(
                 title: const Text('Play Song'),
                 onTap: () {
+                  // Open web browser
+                  openWebBrowser(widget.mood);
                   // Add functionality for Option 1
                   Navigator.of(context)
                       .pop(); // Close the dialog after selecting an option
@@ -139,7 +155,7 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
               ListTile(
                 title: const Text('Add to favorites'),
                 onTap: () {
-                  
+
                   // Add functionality for Option 2
                   Navigator.of(context)
                       .pop(); // Close the dialog after selecting an option
@@ -222,3 +238,29 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
     );
   }
 }
+
+
+void openWebBrowser(String emotion) {
+  try {
+    String musicUrl = getMusicUrl(emotion);
+    launch(musicUrl);
+  } catch (e) {
+    print('Error opening web browser: $e');
+  }
+}
+
+String getMusicUrl(String emotion) {
+  Map<String, String> musicMapping = {
+    'Angry': 'https://www.youtube.com/watch?v=YKLX3QbKBg0',
+    'Disgust': 'https://www.youtube.com/watch?v=I-QfPUz1es8',
+    'Fear': 'https://www.youtube.com/watch?v=GVUqZC7lNiw',
+    'Happy': 'https://www.youtube.com/watch?v=dhYOPzcsbGM',
+    'Sad': 'https://www.youtube.com/playlist?list=RDEM3oyuw1l1PZuOAgZ1jAbitQ&playnext=1&si=ZbK3sN-y8TDQ9E0o',
+    'Surprise': 'https://www.youtube.com/watch?v=7ufkMTshjz8',
+    'Neutral': 'https://www.youtube.com/watch?v=TBsKCT4rsPw',
+  };
+  return musicMapping[emotion] ??
+      'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-Default.mp3';
+}
+
+
