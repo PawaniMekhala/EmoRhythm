@@ -1,9 +1,8 @@
-import 'dart:math';
-
 import 'package:EmoRythm/screens/feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'capture_page.dart';
 import 'navbar.dart';
 
 class EmotionResultsPage extends StatefulWidget {
@@ -92,12 +91,42 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
         return '😱';
       case 'neutral':
         return '😐';
-    // Add more cases for different facial expressions
-      default :
-        return 'No Face'; // Default neutral face
+      default:
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          // Add a post-frame callback to ensure the context is available
+          _showNoFaceDetectedDialog(context);
+        });
+        return ''; // Default neutral face
     }
-
   }
+
+  void _showNoFaceDetectedDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Prevent user from tapping outside to dismiss
+      builder: (context) {
+        return AlertDialog(
+          title: Text('No Face Detected'),
+          content: const Text('Sorry, no face was detected in the image.Try again',
+            style: TextStyle(fontSize: 19),),
+
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CapturePage()), // Navigate to CapturePage
+                );
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
 
 
@@ -201,29 +230,45 @@ class _EmotionResultsPageState extends State<EmotionResultsPage> {
     );
   }
 
-
   void _handleShare() {
-    // You can customize this function to share links to social media
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Share on Social Media'),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text('Share your playlist on:'),
-              const SizedBox(height: 8),
-              _buildSocialMediaLink('Facebook', 'https://www.facebook.com/yourplaylistlink'),
-              _buildSocialMediaLink('Twitter', 'https://www.twitter.com/yourplaylistlink'),
-              // Add more social media links as needed
-            ],
-          ),
-        );
-      },
-    );
+    // Show dialog only if no other dialog is currently showing
+    if (!Navigator.of(context).userGestureInProgress) {
+      showDialog(
+        context: context,
+        barrierDismissible: false, // Prevent user from tapping outside to dismiss
+        builder: (context) {
+          return WillPopScope(
+            // Disable back button to prevent dismissing dialog
+            onWillPop: () async => false,
+            child: AlertDialog(
+              title: const Text('Share on Social Media'),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('Share your playlist on:'),
+                  const SizedBox(height: 8),
+                  _buildSocialMediaLink('Facebook', 'https://www.facebook.com/yourplaylistlink'),
+                  _buildSocialMediaLink('Twitter', 'https://www.twitter.com/yourplaylistlink'),
+                  // Add more social media links as needed
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context); // Close the dialog
+                  },
+                  child: const Text('Close'),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
   }
+
+
 
   Widget _buildSocialMediaLink(String platform, String link) {
     return GestureDetector(
@@ -252,25 +297,17 @@ void openWebBrowser(String emotion) {
 }
 
 String getMusicUrl(String emotion) {
-  Map<String, List<String>> musicMapping = {
-    'Angry': ['https://www.youtube.com/watch?v=F7cwtnf-Ogo', 'https://www.youtube.com/watch?v=ljdq2QYG_xU' , 'https://www.youtube.com/watch?v=u0JS26tiRCA'],
-    'Disgust': ['https://www.youtube.com/watch?v=isNdWV-ZrKw&pp=ygUNZGlzZ3VzdCBzb25ncw%3D%3D', 'https://www.youtube.com/watch?v=6D4oP8UJQ90&pp=ygUNZGlzZ3VzdCBzb25ncw%3D%3D','https://www.youtube.com/watch?v=6Z8ZQ3kTSK0'],
-    'Fear': ['https://www.youtube.com/watch?v=3KROZATOIDA', 'https://www.youtube.com/watch?v=4m_Alceujck','https://www.youtube.com/watch?v=-vvpsIiUVKY'],
-    'Happy': ['https://www.youtube.com/watch?v=I35paFqFOPk', 'https://www.youtube.com/watch?v=UPkMkIOzej8' , 'https://www.youtube.com/watch?v=jfs1Y4b-hO0'],
-    'Sad': ['https://www.youtube.com/playlist?list=RDEM3oyuw1l1PZuOAgZ1jAbitQ&playnext=1&si=ZbK3sN-y8TDQ9E0o', 'https://www.youtube.com/watch?v=FskL-2jrgF0','https://youtu.be/LGmqw3yT0NE?si=DJy3U0WWy_0vo_Sn'],
-    'Surprise': ['https://www.youtube.com/watch?v=jfs1Y4b-hO0', 'https://www.youtube.com/watch?v=Sy2FulGS2Rc' , 'https://www.youtube.com/watch?v=W5Utkb85QCg'],
-    'Neutral': ['https://www.youtube.com/watch?v=sjkrrmBnpGE', 'https://www.youtube.com/watch?v=GwQ0M1fOG6A','https://www.youtube.com/watch?v=VFlmupVRWFM'],
+  Map<String, String> musicMapping = {
+    'Angry': 'https://www.youtube.com/watch?v=YKLX3QbKBg0',
+    'Disgust': 'https://www.youtube.com/watch?v=I-QfPUz1es8',
+    'Fear': 'https://www.youtube.com/watch?v=GVUqZC7lNiw',
+    'Happy': 'https://www.youtube.com/watch?v=dhYOPzcsbGM',
+    'Sad': 'https://www.youtube.com/playlist?list=RDEM3oyuw1l1PZuOAgZ1jAbitQ&playnext=1&si=ZbK3sN-y8TDQ9E0o',
+    'Surprise': 'https://www.youtube.com/watch?v=7ufkMTshjz8',
+    'Neutral': 'https://www.youtube.com/watch?v=TBsKCT4rsPw',
   };
-
-  // Retrieve random song URL for the given emotion
-  List<String> songs = musicMapping[emotion] ?? [];
-  if (songs.isNotEmpty) {
-    // Return a random song URL from the list
-    return songs[Random().nextInt(songs.length)];
-  } else {
-    // If no songs found for the emotion, return a default song
-    return 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-Default.mp3';
-  }
+  return musicMapping[emotion] ??
+      'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-Default.mp3';
 }
 
 
