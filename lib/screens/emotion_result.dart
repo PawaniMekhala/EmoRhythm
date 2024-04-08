@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:EmoRythm/screens/feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -250,17 +252,25 @@ void openWebBrowser(String emotion) {
 }
 
 String getMusicUrl(String emotion) {
-  Map<String, String> musicMapping = {
-    'Angry': 'https://www.youtube.com/watch?v=YKLX3QbKBg0',
-    'Disgust': 'https://www.youtube.com/watch?v=I-QfPUz1es8',
-    'Fear': 'https://www.youtube.com/watch?v=GVUqZC7lNiw',
-    'Happy': 'https://www.youtube.com/watch?v=dhYOPzcsbGM',
-    'Sad': 'https://www.youtube.com/playlist?list=RDEM3oyuw1l1PZuOAgZ1jAbitQ&playnext=1&si=ZbK3sN-y8TDQ9E0o',
-    'Surprise': 'https://www.youtube.com/watch?v=7ufkMTshjz8',
-    'Neutral': 'https://www.youtube.com/watch?v=TBsKCT4rsPw',
+  Map<String, List<String>> musicMapping = {
+    'Angry': ['https://www.youtube.com/watch?v=F7cwtnf-Ogo', 'https://www.youtube.com/watch?v=ljdq2QYG_xU' , 'https://www.youtube.com/watch?v=u0JS26tiRCA'],
+    'Disgust': ['https://www.youtube.com/watch?v=isNdWV-ZrKw&pp=ygUNZGlzZ3VzdCBzb25ncw%3D%3D', 'https://www.youtube.com/watch?v=6D4oP8UJQ90&pp=ygUNZGlzZ3VzdCBzb25ncw%3D%3D','https://www.youtube.com/watch?v=6Z8ZQ3kTSK0'],
+    'Fear': ['https://www.youtube.com/watch?v=3KROZATOIDA', 'https://www.youtube.com/watch?v=4m_Alceujck','https://www.youtube.com/watch?v=-vvpsIiUVKY'],
+    'Happy': ['https://www.youtube.com/watch?v=I35paFqFOPk', 'https://www.youtube.com/watch?v=UPkMkIOzej8' , 'https://www.youtube.com/watch?v=jfs1Y4b-hO0'],
+    'Sad': ['https://www.youtube.com/playlist?list=RDEM3oyuw1l1PZuOAgZ1jAbitQ&playnext=1&si=ZbK3sN-y8TDQ9E0o', 'https://www.youtube.com/watch?v=FskL-2jrgF0','https://youtu.be/LGmqw3yT0NE?si=DJy3U0WWy_0vo_Sn'],
+    'Surprise': ['https://www.youtube.com/watch?v=jfs1Y4b-hO0', 'https://www.youtube.com/watch?v=Sy2FulGS2Rc' , 'https://www.youtube.com/watch?v=W5Utkb85QCg'],
+    'Neutral': ['https://www.youtube.com/watch?v=sjkrrmBnpGE', 'https://www.youtube.com/watch?v=GwQ0M1fOG6A','https://www.youtube.com/watch?v=VFlmupVRWFM'],
   };
-  return musicMapping[emotion] ??
-      'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-Default.mp3';
+
+  // Retrieve random song URL for the given emotion
+  List<String> songs = musicMapping[emotion] ?? [];
+  if (songs.isNotEmpty) {
+    // Return a random song URL from the list
+    return songs[Random().nextInt(songs.length)];
+  } else {
+    // If no songs found for the emotion, return a default song
+    return 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-Default.mp3';
+  }
 }
 
 
