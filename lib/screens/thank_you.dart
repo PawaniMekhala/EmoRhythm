@@ -67,34 +67,9 @@ class _ThankYouPageState extends State<ThankYouPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              height: 170,
-              padding: const EdgeInsets.all(0),
-              child: Image.asset(
-                "assets/logo/thankyou.png",
-                fit: BoxFit.contain,
-              ),
-            ),
-            SizedBox(height: screenHeight * 0.06),
-            Text(
-              "Thank you!",
-              style: GoogleFonts.portLligatSlab(
-                fontSize: 40,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
-            ),
             const SizedBox(height: 8),
             const Text(
               "Message sent successfully",
-              style: TextStyle(
-                color: Color(0xFF1B5699),
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-            const Text(
-              "We will get back to you soon",
               style: TextStyle(
                 color: Color(0xFF1B5699),
                 fontWeight: FontWeight.bold,
@@ -120,17 +95,7 @@ class _ThankYouPageState extends State<ThankYouPage> {
                   ),
                 ),
                 const SizedBox(width: 20),
-                GestureDetector(
-                  onTap: () {
-                    // Show message number when icon is tapped
-                    showContactInfo(context, "Message: 123-456-7890");
-                  },
-                  child: const Icon(
-                    Icons.message,
-                    color: Colors.black,
-                    size: 40,
-                  ),
-                ),
+
                 const SizedBox(width: 20), // Add space between icons
                 GestureDetector(
                   onTap: () {
