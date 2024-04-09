@@ -52,8 +52,10 @@ class _LoginPageState extends State<LoginPage> {
                         email = value!;
                       }),
                       maxLines: 1,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: 'email',
+                        hintStyle: TextStyle(color: Colors.white30),
                         prefixIcon: const Icon(Icons.email),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(35),
@@ -79,9 +81,11 @@ class _LoginPageState extends State<LoginPage> {
                       onSaved: (value) => setState((() => password = value!)),
                       maxLines: 1,
                       obscureText: true,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock),
                         hintText: 'password',
+                        hintStyle: TextStyle(color: Colors.white30),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(35),
                         ),
