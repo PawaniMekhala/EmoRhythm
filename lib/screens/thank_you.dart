@@ -67,6 +67,14 @@ class _ThankYouPageState extends State<ThankYouPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            Container(
+              height: 170,
+              padding: const EdgeInsets.all(0),
+              child: Image.asset(
+                "assets/logo/thankyou.png",
+                fit: BoxFit.contain,
+              ),
+            ),
             SizedBox(height: screenHeight * 0.06),
             Text(
               "Thank you!",
