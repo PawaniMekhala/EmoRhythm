@@ -1,11 +1,118 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:url_launcher/url_launcher.dart';
+import 'emotion_result.dart';
 import 'navbar.dart';
-//import 'dart:io';
-import 'package:google_fonts/google_fonts.dart';
 
-class CapturePage extends StatelessWidget {
+const String emotionDetectionUrl = 'http://3.107.1.99:5000/detect_emotion';
+
+class CapturePage extends StatefulWidget {
   const CapturePage({Key? key});
+
+  @override
+  _CapturePageState createState() => _CapturePageState();
+}
+
+class _CapturePageState extends State<CapturePage> {
+  late Future<void> cameraInitialize;
+  String detectedEmotion = ''; // Variable to store detected emotion
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<void> _capturePhoto(BuildContext context) async {
+    final picker = ImagePicker();
+    final XFile? pickedFile =
+    await picker.pickImage(source: ImageSource.camera);
+
+    if (pickedFile != null) {
+      Uint8List bytes = await pickedFile.readAsBytes();
+
+      // Perform emotion detection on the captured image
+      await _performEmotionDetection(bytes);
+    }
+  }
+
+  Future<void> _uploadFromFile(BuildContext context) async {
+    final picker = ImagePicker();
+    final XFile? pickedFile =
+    await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      Uint8List bytes = await pickedFile.readAsBytes();
+
+      // Perform emotion detection on the selected image
+      await _performEmotionDetection(bytes);
+    }
+  }
+
+  Future<void> _performEmotionDetection(Uint8List imageBytes) async {
+    try {
+      // Create an UploadFile object
+      http.MultipartFile file = http.MultipartFile.fromBytes(
+        'image',
+        imageBytes,
+        filename: 'image.jpg',
+      );
+
+      // Create a FormData object to send the file
+      var formData =
+      http.MultipartRequest('POST', Uri.parse(emotionDetectionUrl));
+      formData.files.add(file);
+
+      // Send the request
+      var response = await formData.send();
+
+      // Read the response
+      var responseBody = await response.stream.bytesToString();
+
+      // Parse the JSON response
+      var jsonResponse = jsonDecode(responseBody);
+
+      // Set the detected emotion in the state
+      if (jsonResponse.containsKey('emotion')) {
+        // Set the detected emotion in the state
+        setState(() {
+          detectedEmotion = 'Detected Emotion: ${jsonResponse['emotion']}';
+        });
+
+
+
+
+        //new add for navigation
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EmotionResultsPage(
+              mood: jsonResponse['emotion'], playlist: ['Music'],
+            ),
+          ),
+        );
+      } else {
+        // Handle the case when no face is detected
+        setState(() {
+          String nullEmotion = detectedEmotion;
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EmotionResultsPage(
+                mood: nullEmotion, playlist: const [],
+              ),
+            ),
+          );
+        });
+      }
+
+    } catch (e) {
+      print('Error performing emotion detection: $e');
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +124,7 @@ class CapturePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 60, left: 20),
             child: IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -38,10 +142,10 @@ class CapturePage extends StatelessWidget {
                     height: 350,
                   ),
                   const SizedBox(height: 20),
-                  Text(
+                  const Text(
                     'Capture the Emotion',
-                    style: GoogleFonts.portLligatSlab(
-                      fontSize: 30,
+                    style: TextStyle(
+                      fontSize: 22,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -78,7 +182,6 @@ class CapturePage extends StatelessWidget {
                         'Upload from Files',
                         style: TextStyle(
                           fontSize: 18,
-                          //fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
@@ -87,6 +190,9 @@ class CapturePage extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  // test purpose only for check the emotion
+
                 ],
               ),
             ),
@@ -95,69 +201,5 @@ class CapturePage extends StatelessWidget {
       ),
       bottomNavigationBar: const BottomNavBar(),
     );
-  }
-
-  // Function to capture photo using device camera
-  void _capturePhoto(BuildContext context) async {
-    final picker = ImagePicker();
-    final XFile? pickedFile =
-        await picker.pickImage(source: ImageSource.camera);
-
-    if (pickedFile != null) {
-      // Do something with the captured photo (e.g., display it)
-      //File imageFile = File(pickedFile.path);
-      // Here you can navigate to another page or perform any action with the captured image
-      // For now, let's just display a dialog with the image path
-      final currentContext = context;
-      showDialog(
-        context: currentContext,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Captured Image Path'),
-            content: Text(pickedFile.path),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
-  // Function to upload image from device files
-  void _uploadFromFile(BuildContext context) async {
-    final picker = ImagePicker();
-    final XFile? pickedFile =
-        await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      // Do something with the selected image (e.g., display it)
-      //File imageFile = File(pickedFile.path);
-      // Here you can navigate to another page or perform any action with the selected image
-      // For now, let's just display a dialog with the image path
-      final currentContext = context;
-      showDialog(
-        context: currentContext,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Selected Image Path'),
-            content: Text(pickedFile.path),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    }
   }
 }
