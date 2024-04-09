@@ -86,8 +86,10 @@ class _SignupPageState extends State<SignupPage> {
                                     email = value!;
                                   }),
                                   maxLines: 1,
+                                  style: TextStyle(color: Colors.white),
                                   decoration: InputDecoration(
                                     hintText: 'email',
+                                    hintStyle: TextStyle(color: Colors.white30),
                                     prefixIcon: const Icon(Icons.email),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(35),
@@ -113,10 +115,12 @@ class _SignupPageState extends State<SignupPage> {
                                   onSaved: (value) =>
                                       setState((() => password = value!)),
                                   maxLines: 1,
+                                  style: TextStyle(color: Colors.white),
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     prefixIcon: const Icon(Icons.lock),
                                     hintText: 'password',
+                                    hintStyle: TextStyle(color: Colors.white30),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(35),
                                     ),
@@ -141,10 +145,12 @@ class _SignupPageState extends State<SignupPage> {
                                   onSaved: (value) =>
                                       setState((() => password = value!)),
                                   maxLines: 1,
+                                  style: TextStyle(color: Colors.white),
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     prefixIcon: const Icon(Icons.lock),
                                     hintText: 'confirm password',
+                                    hintStyle: TextStyle(color: Colors.white30),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(35),
                                     ),
