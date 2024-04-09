@@ -71,7 +71,7 @@ class _ThankYouPageState extends State<ThankYouPage> {
               height: 170,
               padding: const EdgeInsets.all(0),
               child: Image.asset(
-                "assets/logo/thankyou.png",
+                "assets/thankyou.png",
                 fit: BoxFit.contain,
               ),
             ),
